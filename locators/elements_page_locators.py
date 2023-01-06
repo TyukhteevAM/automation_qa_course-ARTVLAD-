@@ -17,6 +17,7 @@ class TextBoxPageLocators:
     CREATED_CURRENT_ADDRESS = (By.CSS_SELECTOR, '#output #currentAddress')
     CREATED_PERMANENT_ADDRESS = (By.CSS_SELECTOR, '#output #permanentAddress')
 
+
 class CheckBoxPageLocators:
     EXPAND_ALL_BUTTON = (By.CSS_SELECTOR, "button[title='Expand all']")
     ITEM_LIST = (By.CSS_SELECTOR, "span[class='rct-title']")
@@ -24,11 +25,13 @@ class CheckBoxPageLocators:
     TITLE_ITEM = ".//ancestor::span[@class='rct-text']"
     OUTPUT_RESULT = (By.CSS_SELECTOR, "span[class='text-success']")
 
+
 class RadioButtonPageLocators:
     YES_RADIOBUTTON = (By.CSS_SELECTOR, 'label[class^="custom-control"][for="yesRadio"]')
     IMPRESSIVE_RADIOBUTTON = (By.CSS_SELECTOR, 'label[class^="custom-control"][for="impressiveRadio"]')
     NO_RADIOBUTTON = (By.CSS_SELECTOR, 'label[class^="custom-control"][for="noRadio"]')
     OUTPUT_RESULT = (By.CSS_SELECTOR, 'p span[class="text-success"]')
+
 
 class WebTablePageLocators:
     # add person form
@@ -55,6 +58,7 @@ class WebTablePageLocators:
     # delete
     DELETE_TITLE = (By.CSS_SELECTOR, 'div[class="rt-noData"]')
 
+
 class ButtonsPageLocators:
     DOUBLE_BUTTON_CLICK = (By.CSS_SELECTOR, 'button[id="doubleClickBtn"]')
     RIGHT_CLICK_BUTTON = (By.CSS_SELECTOR, 'button[id="rightClickBtn"]')
@@ -63,14 +67,14 @@ class ButtonsPageLocators:
     RIGHT_CLICK_MESSAGE = (By.CSS_SELECTOR, 'p[id="rightClickMessage"]')
     DYNAMIC_CLICK_MESSAGE = (By.CSS_SELECTOR, 'p[id="dynamicClickMessage"]')
 
+
 class LinksPageLocators:
     SIMPLE_LINK = (By.CSS_SELECTOR, 'a[id="simpleLink"]')
     BAD_REQUEST = (By.CSS_SELECTOR, 'a[id="bad-request"]')
 
 
+class UploadAndDownloadPageLocators:
+    UPLOAD_FILE = (By.CSS_SELECTOR, 'input[id="uploadFile"]')
+    UPLOAD_FILE_NAME = (By.CSS_SELECTOR, 'p[id = "uploadedFilePath"]')
 
-
-
-
-
-
+    DOWNLOAD_FILE = (By.CSS_SELECTOR, 'a[id = "downloadButton"]')
