@@ -2,7 +2,7 @@ import random
 import time
 
 from pages.elements_page import TextBoxPage, CheckBoxPage, RadioButtonPage, WebTablePage, ButtonsPage, LinksPage, \
-    UploadAndDownloadPage
+    UploadAndDownloadPage, DynamicPropertiesPage
 
 
 class TestElements:
@@ -109,7 +109,7 @@ class TestElements:
             response_code = links_page.check_broken_link('https://demoqa.com/bad-request')
             assert response_code == 400, "the link works or the status code in son 400"
 
-    class TestUploadAndDownload:
+    class TestUploadAndDownloadPage:
         def test_upload_file(self, driver):
             upload_download_page = UploadAndDownloadPage(driver, 'https://demoqa.com/upload-download')
             upload_download_page.open()
@@ -121,3 +121,23 @@ class TestElements:
             upload_download_page.open()
             check = upload_download_page.download_file()
             assert check is True, "The file has not been download"
+
+    class TestDynamicPropertiesPage:
+
+        def test_enable_button(self, driver):
+            dynamic_properties_page = DynamicPropertiesPage(driver, 'https://demoqa.com/dynamic-properties')
+            dynamic_properties_page.open()
+            enable = dynamic_properties_page.check_enable_button()
+            assert enable is True, "Button did not enable after 5 sec"
+
+        def test_dynamic_properties_page(self, driver):
+            dynamic_properties_page = DynamicPropertiesPage(driver, 'https://demoqa.com/dynamic-properties')
+            dynamic_properties_page.open()
+            color_before, color_after = dynamic_properties_page.check_changed_of_color()
+            assert color_after != color_before, "Colors has not been changed"
+
+        def test_appear_button(self, driver):
+            dynamic_properties_page = DynamicPropertiesPage(driver, 'https://demoqa.com/dynamic-properties')
+            dynamic_properties_page.open()
+            appear = dynamic_properties_page.check_appear_of_button()
+            assert appear is True, "Button did not appear after 5 sec"
