@@ -142,6 +142,7 @@ class WebTablePage(BasePage):
         return self.element_is_visible(self.locators.DELETE_TITLE).text
 
     def select_up_to_some_rows(self):
+        self.footer_remove()
         count = [5, 10, 20, 25, 50, 100]
         data = []
         for i in count:
