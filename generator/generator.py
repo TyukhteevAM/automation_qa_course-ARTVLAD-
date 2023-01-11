@@ -32,8 +32,3 @@ def generated_subject():
     data = ["Hindi", "English", "Maths", "Physics", "Chemistry", "Biology", "Computer Science", "Commerce", "Accounting", "Economics", "Arts", "Social Studies", "History", "Civics"]
     subject = (random.choice(data))
     return subject
-
-
-
-
-
