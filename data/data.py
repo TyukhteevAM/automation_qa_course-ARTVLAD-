@@ -13,3 +13,7 @@ class Person:
     mobile_number: int = None
     current_address: str = None
     permanent_address: str = None
+
+@dataclass
+class Color:
+    color_name: list = None
