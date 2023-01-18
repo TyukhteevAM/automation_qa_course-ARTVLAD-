@@ -39,3 +39,13 @@ class ProgressBarLocators:
     START_BUTTON = (By.XPATH, '//button[@id="startStopButton"]')
     RESET_BUTTON = (By.CSS_SELECTOR, 'button[id="resetButton"]')
     PROGRESS_BAR_VALUE = (By.CSS_SELECTOR, 'div[role="progressbar"]')
+
+class TabsPageLocators:
+    WHAT_TAB = (By.CSS_SELECTOR, 'a[id="demo-tab-what"]')
+    WHAT_TAB_TEXT = (By.XPATH, '//div[@id="demo-tabpane-what"]/p')
+    ORIGIN_TAB = (By.CSS_SELECTOR, 'a[id="demo-tab-origin"]')
+    ORIGIN_TAB_TEXT = (By.XPATH, '//div[@id="demo-tabpane-origin"]/p')
+    USE_TAB = (By.CSS_SELECTOR, 'a[id="demo-tab-use"]')
+    USE_TAB_TEXT = (By.XPATH, '//div[@id="demo-tabpane-use"]/p')
+    MORE_TAB = (By.CSS_SELECTOR, 'a[id="demo-tab-more"]')
+    MORE_TAB_TEXT = (By.XPATH, '//a[@id="demo-tabpane-more"]/p')
