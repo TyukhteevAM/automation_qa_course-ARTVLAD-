@@ -6,7 +6,8 @@ from selenium.webdriver import Keys
 from selenium.webdriver.support.select import Select
 
 from generator.generator import generated_color, generated_date
-from locators.widgets_page_locators import AccordianPageLocators, AutoCompletePageLocators, DataPickerPageLocators
+from locators.widgets_page_locators import AccordianPageLocators, AutoCompletePageLocators, DataPickerPageLocators, \
+    SliderPageLocators, ProgressBarLocators
 from pages.base_page import BasePage
 
 
@@ -121,4 +122,38 @@ class DatePickerPage(BasePage):
             if item.text == value:
                 item.click()
                 break
+
+
+class SliderPage(BasePage):
+    locators = SliderPageLocators()
+
+    def set_slider_value(self):
+        value_before = self.element_is_visible(self.locators.SLIDER_VALUE).get_attribute('value')
+        slider_input = self.element_is_visible(self.locators.INPUT_SLIDER)
+        self.action_drag_and_drop_by_offset(slider_input, random.randint(1, 100), 0)
+        value_before = self.element_is_visible(self.locators.SLIDER_VALUE).get_attribute('value')
+        return value_before, value_after
+
+class ProgressBarPage(BasePage):
+    locators = ProgressBarLocators()
+
+    def check_progress_bar(self):
+        value_before = self.element_is_present(self.locators.PROGRESS_BAR_VALUE).text
+        progress_bar_button = self.element_is_clickable(self.locators.START_BUTTON)
+        progress_bar_button.click()
+        time.sleep(random.randint(2, 6))
+        progress_bar_button.click()
+        value_after = self.element_is_present(self.locators.PROGRESS_BAR_VALUE).text
+        return value_before, value_after
+
+    def check_reset_progress_bar(self):
+        value_before = self.element_is_present(self.locators.PROGRESS_BAR_VALUE).get_attribute('aria-valuenow')
+        start_and_stop_bar_button = self.element_is_clickable(self.locators.START_BUTTON)
+        start_and_stop_bar_button.click()
+        time.sleep(13)
+        reset_bar_button = self.element_is_clickable(self.locators.RESET_BUTTON)
+        reset_bar_button.click()
+        value_after = self.element_is_present(self.locators.PROGRESS_BAR_VALUE).text
+        return value_before, value_after
+
 

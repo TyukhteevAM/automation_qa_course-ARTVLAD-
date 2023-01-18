@@ -1,10 +1,9 @@
 import time
 
-from pages.widgets_page import AccordianPage, AutoCompletePage, DatePickerPage
+from pages.widgets_page import AccordianPage, AutoCompletePage, DatePickerPage, SliderPage, ProgressBarPage
 
 
 class TestWidgets:
-
     class TestAccordianPage:
 
         def test_accordian(self, driver):
@@ -63,6 +62,22 @@ class TestWidgets:
             value_date_before, value_date_after = date_picker_page.select_date_and_time()
             assert value_date_before != value_date_after, 'the date and time have not been changed'
 
+    class TestSliderPage:
+        def test_check_slider(self, driver):
+            slider_page = SliderPage(driver, 'https://demoqa.com/slider')
+            slider_page.open()
+            before, after = slider_page.set_slider_value()
+            assert before != after, "The slide bar has not been changed"
 
+    class TestProgressBarPage:
+        def test_progress_bar(self, driver):
+            progress_bar_page = ProgressBarPage(driver, 'https://demoqa.com/progress-bar')
+            progress_bar_page.open()
+            before, after = progress_bar_page.check_progress_bar()
+            assert before != after, "The progress bar has not been changed"
 
-
+        def test_reset_progress_bar(self, driver):
+            progress_bar_page = ProgressBarPage(driver, 'https://demoqa.com/progress-bar')
+            progress_bar_page.open()
+            before, after = progress_bar_page.check_reset_progress_bar()
+            assert f'{before}%' == after, "The progress bar has not been reseted"
