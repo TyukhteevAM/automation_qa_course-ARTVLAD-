@@ -1,8 +1,9 @@
 import random
+import re
 import time
 
 from locators.interaction_page_locators import SortablePageLocators, SelectablePageLocators, ResizablePageLocators, \
-    DroppablePagLocators
+    DroppablePagLocators, DraggablePageLocators
 from pages.base_page import BasePage
 
 
@@ -135,6 +136,50 @@ class DroppablePage(BasePage):
         time.sleep(2)
         position_after_revert = not_rivert_div.get_attribute('style')
         return position_after_move, position_after_revert
+
+
+class DraggablePage(BasePage):
+    locators = DraggablePageLocators()
+
+    def get_position(self, drag_div):
+        self.action_drag_and_drop_by_offset(drag_div, random.randint(0, 200), random.randint(0, 200))
+        position_before = drag_div.get_attribute('style')
+        self.action_drag_and_drop_by_offset(drag_div, random.randint(0, 200), random.randint(0, 200))
+        position_after = drag_div.get_attribute('style')
+        return position_before, position_after
+
+    def simple_drag_box(self):
+        self.element_is_visible(self.locators.SIMPLE_TAB_DRAGGABLE).click()
+        drag_div = self.element_is_visible(self.locators.DRAG_ME_SIMPLE_DRAGGABLE)
+        position_before, position_after = self.get_position(drag_div)
+        return position_before, position_after
+
+    def get_top_position(self, position):
+        return re.findall(r'\d[0-9]|\d', position.split(';')[2])
+
+    def get_left_position(self, position):
+        return re.findall(r'\d[0-9]|\d', position.split(';')[1])
+
+    def axis_restricted_x(self):
+        self.element_is_visible(self.locators.AXIS_RESTRICTED_TAB).click()
+        only_x = self.element_is_visible(self.locators.ONLY_X_AXIS_RESTRICTED)
+        position_x = self.get_position(only_x)
+        top_x_before = self.get_top_position(position_x[0])
+        top_x_after = self.get_top_position(position_x[1])
+        left_x_before = self.get_left_position(position_x[0])
+        left_x_after = self.get_left_position(position_x[1])
+        return [top_x_before, top_x_after], [left_x_before,  left_x_after]
+
+    def axis_restricted_y(self):
+        self.element_is_visible(self.locators.AXIS_RESTRICTED_TAB).click()
+        only_y = self.element_is_visible(self.locators.ONLY_Y_AXIS_RESTRICTED)
+        position_y = self.get_position(only_y)
+        top_y_before = self.get_top_position(position_y[0])
+        top_y_after = self.get_top_position(position_y[1])
+        left_y_before = self.get_left_position(position_y[0])
+        left_y_after = self.get_left_position(position_y[1])
+        return [top_y_before, top_y_after], [left_y_before, left_y_after]
+
 
 
 

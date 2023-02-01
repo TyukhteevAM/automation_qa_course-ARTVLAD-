@@ -57,3 +57,20 @@ class DroppablePagLocators:
     WILL_REVERT = (By.CSS_SELECTOR, 'div[id="revertable"]')
     NOT_REVERT = (By.CSS_SELECTOR, 'div[id="notRevertable"]')
     DROP_HERE_REVERT = (By.CSS_SELECTOR, '#revertableDropContainer #droppable')
+
+
+class DraggablePageLocators:
+    # Simple
+    SIMPLE_TAB_DRAGGABLE = (By.XPATH, '//a[@id="draggableExample-tab-simple"]')
+    DRAG_ME_SIMPLE_DRAGGABLE = (By.CSS_SELECTOR, '#dragBox')
+
+    # Axis Restricted
+    AXIS_RESTRICTED_TAB = (By.XPATH, '//a[@id="draggableExample-tab-axisRestriction"]')
+    ONLY_X_AXIS_RESTRICTED = (By.XPATH, '//div[@id="restrictedX"]')
+    ONLY_Y_AXIS_RESTRICTED = (By.XPATH, '//div[@id="restrictedY"]')
+
+    # Container Restricted
+    CONTAINER_RESTRICTED_TAB = (By.XPATH, '//a[@id="draggableExample-tab-containerRestriction"]')
+
+    # Cursor style
+    CURSOR_STILE_TAB = (By.XPATH, '//a[@id="draggableExample-tab-cursorStyle"]')
